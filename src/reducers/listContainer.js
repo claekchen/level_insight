@@ -13,7 +13,12 @@ export default function listContainer(state = initialState, action) {
             tempArray.push(action.key)
             return Object.assign({}, state, { companyArray: tempArray });
         case types.DELETE_FROM_CONTAINER:
-            return Object.assign({}, state, { companyArray: state.companyArray.filter(item => item != action.key) });
+            if (state.companyArray.length !== 1) {
+                console.log(111)
+                return Object.assign({}, state, { companyArray: state.companyArray.filter(item => item !== action.key) });
+            } else {
+                return initialState
+            }
         default:
             return state;
     }

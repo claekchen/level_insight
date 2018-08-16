@@ -23,21 +23,21 @@ class ListContainer extends Component {
         Palette.sort((a, b) => Math.random() > 0.5 ? -1 : 1);
     }
     renderList() {
-        const {companyArray} = this.props
+        const {companyArray, onDelete} = this.props
         const res = []
         const uniqueColorList = Palette.slice(0)
-        res.push(<ListForLevel key={companyArray[0]} company={companyArray[0]} color={uniqueColorList.pop()}/>)
+        res.push(<ListForLevel remove={() => onDelete(companyArray[0])} key={companyArray[0]} company={companyArray[0]} color={uniqueColorList.pop()}/>)
         if (companyArray[1]) {
           res.push(<div className='margin'></div>)
-          res.push(<ListForLevel key={companyArray[1]} company={companyArray[1]} color={uniqueColorList.pop()}/>)
+          res.push(<ListForLevel remove={() => onDelete(companyArray[1])} key={companyArray[1]} company={companyArray[1]} color={uniqueColorList.pop()}/>)
         }
         return res
     }
     render() {
-        const {companyArray} = this.props
         return (
             <div className='list-container'>
-                <Button onClick={this.handlePush}>test</Button>
+                <Button onClick={this.handlePush}>test1</Button>
+                <Button onClick={() => {this.props.onPush('alibaba');this.randomColor()}}>test2</Button>
                 {this.renderList()}
             </div>
         )
