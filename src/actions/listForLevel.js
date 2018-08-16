@@ -1,5 +1,5 @@
 import * as types from '../constants/action-types';
-
+import dataOfLevel from '../datas/dataOfLevel'
 const updateDataSource = (data) => {
     return (
         {
@@ -9,16 +9,9 @@ const updateDataSource = (data) => {
     );
 };
 
-export const getData = () => {
+export const getData = (nameOfCompany) => {
     return (dispatch) => {
-        const data = [        
-            {
-                title: 'T1'
-            },
-            {
-                title: 'T2'
-            }
-    ]; // placeholder
+        const data = dataOfLevel[nameOfCompany]; // placeholder
         dispatch(updateDataSource(data))
     }
 }
