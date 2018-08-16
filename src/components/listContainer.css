@@ -1,0 +1,11 @@
+.list-container{
+  display: flex;
+  justify-content: center;
+}
+.list-container > .listForLevel{
+  flex: 1;
+}
+.list-container > .margin{
+  height: 100%;
+  width: 10px;
+}

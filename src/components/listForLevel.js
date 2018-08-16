@@ -22,17 +22,17 @@ class ListForLevel extends Component {
         return TotalHeightOfListForLevel/count
     }
     componentDidMount() {
-        this.props.onGetData('tencent');
+        this.props.onGetData(this.props.company);
         this.randomColor();
     }
     randomColor() {
         Palette.sort((a, b) => Math.random() > 0.5 ? -1 : 1);
     }
     renderItem(item) {
-        const {dataSource} = this.props;
+        const {dataSource, color} = this.props;
         return (
             <List.Item 
-            style={{height: this.calculateHeight(dataSource.length), backgroundColor: Palette[0]}}
+            style={{height: this.calculateHeight(dataSource.length), backgroundColor: color}}
             className= 'level-name'
             >
                 <p className='main-level'>{item.title}</p>
@@ -40,11 +40,11 @@ class ListForLevel extends Component {
         )
     }
     render() {
-        const {dataSource} = this.props;
+        const {dataSource, company} = this.props;
         return (
             <List       
                 size="small"
-                header={<ListHeader title='tencent'/>}
+                header={<ListHeader title={company}/>}
                 dataSource={dataSource}
                 className='listForLevel'
                 renderItem={this.renderItem}
@@ -64,7 +64,9 @@ const mapDispatchToProps = {
 ListForLevel.propTypes = {
     dataSource: PropTypes.array,
     onGetData: PropTypes.func,
-    nameOfCompany: PropTypes.string
+    nameOfCompany: PropTypes.string,
+    company: PropTypes.string,
+    color: PropTypes.string
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListForLevel);
