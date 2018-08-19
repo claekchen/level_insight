@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 import { List, Icon } from 'antd';
 import React, {Component} from 'react';
 import './listForLevel.css';
-import {TotalHeightOfListForLevel, Palette} from '../constants/app-constants'
+import {TotalHeightOfListForLevel, Palette, AllCompanyName} from '../constants/app-constants'
 import dataOfLevel from '../datas/dataOfLevel'
 function ListHeader(props) {
     return (
         <div className='title'>
             <Icon className='close' onClick={props.remove} type='close'/>
-            <span>{props.title}</span>
+            <span>{AllCompanyName[props.industry][props.title]}</span>
         </div>
     )
 }
@@ -19,16 +19,18 @@ class ListForLevel extends Component {
             dataSource: []
         }
         this.renderItem = this.renderItem.bind(this);
+        this.getData = this.getData.bind(this)
     }
     calculateHeight(count) {
         return TotalHeightOfListForLevel/count
     }
     componentDidMount() {
-        this.getData(this.props.company);
+        this.getData();
         this.randomColor();
     }
-    getData(nameOfCompany) {
-        this.setState({dataSource: dataOfLevel[nameOfCompany]})
+    getData() {
+        const {industry, company} = this.props
+        this.setState({dataSource: dataOfLevel[industry][company]})
     }
     randomColor() {
         Palette.sort((a, b) => Math.random() > 0.5 ? -1 : 1);
@@ -46,12 +48,12 @@ class ListForLevel extends Component {
         )
     }
     render() {
-        const {company, remove} = this.props;
+        const {company, remove, industry} = this.props;
         const {dataSource} = this.state
         return (
             <List       
                 size="small"
-                header={<ListHeader remove={remove} title={company}/>}
+                header={<ListHeader industry={industry} remove={remove} title={company}/>}
                 dataSource={dataSource}
                 className='listForLevel'
                 renderItem={this.renderItem}
@@ -63,7 +65,8 @@ class ListForLevel extends Component {
 ListForLevel.propTypes = {
     company: PropTypes.string,
     color: PropTypes.string,
-    remove: PropTypes.func
+    remove: PropTypes.func,
+    industry: PropTypes.string
 };
 
 ListHeader.propTypes = {

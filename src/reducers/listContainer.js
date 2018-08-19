@@ -1,14 +1,18 @@
 import * as types from '../constants/action-types';
+import {AllCompanyKey} from '../constants/app-constants'
 const initialState = {
-  companyArray: ['tencent']
+  companyArray: ['tencent'],
+  industry: 'SE'
 };
 
+let defaultState = Object.assign({}, initialState)
+
 const isSingleArray = (array) => {
-    return array.length == 1 ? true : false;
+    return array.length === 1 ? true : false;
 }
 
 const isExist = (value, array) => {
-    return array.indexOf(value) != -1 ? true : false;
+    return array.indexOf(value) !== -1 ? true : false;
 }
 export default function listContainer(state = initialState, action) {
     switch (action.type) {
@@ -27,8 +31,13 @@ export default function listContainer(state = initialState, action) {
             if (!isSingleArray(state.companyArray)) {
                 return Object.assign({}, state, { companyArray: state.companyArray.filter(item => item !== action.key) });
             } else {
-                return initialState
+                return defaultState
             }
+        case types.SELECT_INDUSTRY:
+            let tempCompany = []
+            tempCompany.push(AllCompanyKey[action.industry][0])
+            defaultState = Object.assign({}, state, {industry: action.industry, companyArray: tempCompany})
+            return Object.assign({}, state, {industry: action.industry, companyArray: tempCompany})
         default:
             return state;
     }

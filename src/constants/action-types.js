@@ -1,6 +1,4 @@
-//ListforLevel
-export const UPDATE_DATASOURCE = 'UPDATE_DATASOURCE';
-
 //ListContainer
 export const PUSH_TO_CONTAINER = 'PUSH_TO_CONTAINER';
 export const DELETE_FROM_CONTAINER = 'DELETE_FROM_CONTAINER';
+export const SELECT_INDUSTRY = 'SELECT_INDUSTRY'

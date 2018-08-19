@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import { Button, Dropdown, Menu, Icon } from 'antd';
-import {AllCompany, MaxCountOfCompanyButton} from '../constants/app-constants';
+import {AllCompanyKey, AllCompanyName,  MaxCountOfCompanyButton} from '../constants/app-constants';
 import './buttonContainer.css';
+
 class ButtonContianer extends Component {
     constructor(props) {
         super(props)
@@ -13,9 +14,10 @@ class ButtonContianer extends Component {
         this.randomColor();
     }
     renderList() {
+        const {industry} = this.props
         let res = []
         let resInDropDown = []
-        res = AllCompany.map((item, index) => {
+        res = AllCompanyKey[industry].map((item, index) => {
             if (index+1 > MaxCountOfCompanyButton) {
                 resInDropDown.push(
                     <Menu.Item 
@@ -23,7 +25,7 @@ class ButtonContianer extends Component {
                         className='menu-company' 
                         key={item}
                     >
-                        {item}
+                        {AllCompanyName[industry][item]}
                     </Menu.Item>)
             }
             return index < MaxCountOfCompanyButton ? (
@@ -32,7 +34,7 @@ class ButtonContianer extends Component {
                     className='button-company'
                     key={index}
                 >
-                    {item}
+                    {AllCompanyName[industry][item]}
                 </Button>
             ) : null
         })
@@ -41,11 +43,11 @@ class ButtonContianer extends Component {
                 {resInDropDown}
             </Menu>
         );
-        if (AllCompany.length > MaxCountOfCompanyButton) {
+        if (AllCompanyKey[industry].length > MaxCountOfCompanyButton) {
             res.push(
                 <Dropdown key='more_button' overlay={menu}>
                     <Button>
-                        More <Icon type="down" />
+                        更多 <Icon type="down" />
                     </Button>
                 </Dropdown>
             )
@@ -63,7 +65,8 @@ class ButtonContianer extends Component {
 
 ButtonContianer.propTypes = {
     onPush: PropTypes.func,
-    randomColor: PropTypes.func
+    randomColor: PropTypes.func,
+    industry: PropTypes.string
 };
 
 export default ButtonContianer;

@@ -16,3 +16,12 @@ export const deleteFromContainer = (key) => {
     }
 );
 }
+
+export const selectIndustry = (industry) => {
+    return (
+        {
+            type: types.SELECT_INDUSTRY,
+            industry: industry
+        }
+    )
+}
