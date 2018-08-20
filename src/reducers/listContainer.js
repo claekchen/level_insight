@@ -3,7 +3,9 @@ import dataOfLevel from '../datas/dataOfLevel'
 const initialState = {
   companyArray: ['tencent'],
   industry: 'SE',
-  salaryVisible: false
+  salaryVisible: false,
+  companySelected: 'tencent',
+  levelSelected: 'T1'
 };
 
 let defaultState = Object.assign({}, initialState)
@@ -41,6 +43,10 @@ export default function listContainer(state = initialState, action) {
             return Object.assign({}, state, {industry: action.industry, companyArray: tempCompany})
         case types.TOGGLE_MODAL:
             return Object.assign({}, state, {salaryVisible: !state.salaryVisible})
+        case types.SELECT_COMPANY_SALARY:
+            return Object.assign({}, state, {companySelected: action.company})
+        case types.SELECT_LEVEL_SALARY:
+            return Object.assign({}, state, {levelSelected: action.level})
         default:
             return state;
     }

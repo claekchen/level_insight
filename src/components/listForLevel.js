@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import { connect } from "react-redux";
 import './listForLevel.css';
 import {TotalHeightOfListForLevel, Palette} from '../constants/app-constants'
-import {toggleSalaryModal} from '../actions/listContainer'
+import {selectCompanyForSalary} from '../actions/listContainer'
 import dataOfLevel from '../datas/dataOfLevel'
 function ListHeader(props) {
     return (
@@ -14,6 +14,7 @@ function ListHeader(props) {
         </div>
     )
 }
+
 class ListForLevel extends Component {
     constructor() {
         super();
@@ -22,6 +23,7 @@ class ListForLevel extends Component {
         }
         this.renderItem = this.renderItem.bind(this);
         this.getData = this.getData.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
     calculateHeight(count) {
         return TotalHeightOfListForLevel/count
@@ -37,13 +39,19 @@ class ListForLevel extends Component {
     randomColor() {
         Palette.sort((a, b) => Math.random() > 0.5 ? -1 : 1);
     }
+    handleClick(e) {
+        const level = e.currentTarget.getAttribute('data-level')
+        const {onClick, company} = this.props;
+        onClick(company, level)
+    }
     renderItem(item) {
-        const {color, onClick} = this.props;
+        const {color} = this.props;
         const {dataSource} = this.state
         return (
             <List.Item 
             style={{height: this.calculateHeight(dataSource.length), backgroundColor: color}}
-            onClick={onClick}
+            onClick={this.handleClick}
+            data-level={item.title}
             className= 'level-name'
             >
                 <p className='main-level'>{item.title}</p>
@@ -70,7 +78,7 @@ const mapStateToProps = () => {
     };
 };
 const mapDispatchToProps = {
-    onClick: toggleSalaryModal
+    onClick: selectCompanyForSalary
 };
 
 ListForLevel.propTypes = {

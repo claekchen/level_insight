@@ -33,3 +33,28 @@ export const toggleSalaryModal = () => {
         }
     )
 }
+
+const updateCompanyForSalary = (company) => {
+  return (
+      {
+          type: types.SELECT_COMPANY_SALARY,
+          company: company
+      }
+  )
+}
+
+const updateLevelForSalary = (level) => {
+  return (
+    {
+        type: types.SELECT_LEVEL_SALARY,
+        level: level
+    }
+)
+}
+export const selectCompanyForSalary = (company, level) => {
+    return (dispatch) => {
+      dispatch(updateCompanyForSalary(company))
+      dispatch(updateLevelForSalary(level))
+      dispatch(toggleSalaryModal())
+    }
+}

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import { connect } from "react-redux";
 import {Modal, Table} from 'antd';
-import dataOfLevel from '../datas/dataOfLevel'
+import dataOfSalary from '../datas/dataOfSalary'
 import {toggleSalaryModal} from '../actions/listContainer'
 import './salaryModal.css';
 
@@ -18,14 +18,14 @@ const columns = [
         key: 'stock',
     }, 
     {
-        title: '奖金',
+        title: '奖金/年',
         dataIndex: 'bonus',
         key: 'bonus',
     }
 ]
 function AverageSalary(props) {
     return (
-        <Table columns={columns}/>
+        <Table columns={columns} dataSource={props.dataSource}/>
     )
 }
 class SalaryModal extends Component {
@@ -33,24 +33,31 @@ class SalaryModal extends Component {
         super(props)
     }
     render() {
-        const {onClose} = this.props
+        const {onClose, industry, level, company} = this.props
+        const {salary, stock, bonus} = dataOfSalary[industry][company][level] ? dataOfSalary[industry][company][level] : [null, null, null]
+        const dataSource = [{
+            key: 0,
+            salary: `￥${salary}`,
+            stock: `￥${stock}`,
+            bonus: `￥${bonus}`
+        }]
+        const totle = salary + stock + bonus
         return (
-            <div className='salary-modal'>
-                <Modal
-                    title="详情"
-                    visible={this.props.visible}
-                    onCancel={onClose}
-                    footer={null}
-                >
-                    <h2>腾讯</h2>
-                    <p>T1</p>
-                    <p>
-                        <span>总和：</span>
-                        <span>10000</span>
-                    </p>
-                    <AverageSalary />
-                </Modal>
-            </div>
+            <Modal
+                title="详情"
+                visible={this.props.visible}
+                onCancel={onClose}
+                footer={null}
+                className='salary-modal'
+            >
+                <h5>腾讯</h5>
+                <h1>T1</h1>
+                <h3>
+                    <span>总和：</span>
+                    <span>￥{totle}</span>
+                </h3>
+                <AverageSalary dataSource={dataSource}/>
+            </Modal>
         )
     }
 }
@@ -58,7 +65,9 @@ class SalaryModal extends Component {
 const mapStateToProps = (state) => {
     return {
         industry: state.listContainer.industry,
-        visible: state.listContainer.salaryVisible
+        visible: state.listContainer.salaryVisible,
+        company: state.listContainer.companySelected,
+        level: state.listContainer.levelSelected
     };
 };
 const mapDispatchToProps = {
@@ -68,7 +77,9 @@ const mapDispatchToProps = {
 SalaryModal.propTypes = {
     visible: PropTypes.bool,
     industry: PropTypes.string,
-    onClose: PropTypes.func
+    company: PropTypes.string,
+    onClose: PropTypes.func,
+    level: PropTypes.string
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SalaryModal);
