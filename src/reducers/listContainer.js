@@ -1,5 +1,5 @@
 import * as types from '../constants/action-types';
-import {AllCompanyKey} from '../constants/app-constants'
+import dataOfLevel from '../datas/dataOfLevel'
 const initialState = {
   companyArray: ['tencent'],
   industry: 'SE'
@@ -35,7 +35,7 @@ export default function listContainer(state = initialState, action) {
             }
         case types.SELECT_INDUSTRY:
             let tempCompany = []
-            tempCompany.push(AllCompanyKey[action.industry][0])
+            tempCompany.push(Object.keys(dataOfLevel[action.industry]['company'])[0])
             defaultState = Object.assign({}, state, {industry: action.industry, companyArray: tempCompany})
             return Object.assign({}, state, {industry: action.industry, companyArray: tempCompany})
         default:

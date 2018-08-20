@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {Select} from 'antd';
-import {AllCompanyKey, AllIndustryName} from '../constants/app-constants';
+import dataOfLevel from '../datas/dataOfLevel'
 import './industrySelect.css';
 const Option = Select.Option;
 class IndustrySelect extends Component {
@@ -10,9 +10,9 @@ class IndustrySelect extends Component {
         this.renderList = this.renderList.bind(this)
     }
     renderList() {
-        let res = Object.keys(AllCompanyKey).map(
+        let res = Object.keys(dataOfLevel).map(
             (key) => {
-                return <Option key={key} value={key}>{AllIndustryName[key]}</Option>
+                return <Option key={key} value={key}>{dataOfLevel[key]['name']}</Option>
             }
         )
         return res

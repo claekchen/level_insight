@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import { Button, Dropdown, Menu, Icon } from 'antd';
-import {AllCompanyKey, AllCompanyName,  MaxCountOfCompanyButton} from '../constants/app-constants';
+import {MaxCountOfCompanyButton} from '../constants/app-constants';
+import dataOfLevel from '../datas/dataOfLevel'
 import './buttonContainer.css';
 
 class ButtonContianer extends Component {
@@ -17,7 +18,7 @@ class ButtonContianer extends Component {
         const {industry} = this.props
         let res = []
         let resInDropDown = []
-        res = AllCompanyKey[industry].map((item, index) => {
+        res = Object.keys(dataOfLevel[industry]['company']).map((item, index) => {
             if (index+1 > MaxCountOfCompanyButton) {
                 resInDropDown.push(
                     <Menu.Item 
@@ -25,7 +26,7 @@ class ButtonContianer extends Component {
                         className='menu-company' 
                         key={item}
                     >
-                        {AllCompanyName[industry][item]}
+                        {dataOfLevel[industry]['company'][item]['name']}
                     </Menu.Item>)
             }
             return index < MaxCountOfCompanyButton ? (
@@ -34,7 +35,7 @@ class ButtonContianer extends Component {
                     className='button-company'
                     key={index}
                 >
-                    {AllCompanyName[industry][item]}
+                    {dataOfLevel[industry]['company'][item]['name']}
                 </Button>
             ) : null
         })
@@ -43,7 +44,7 @@ class ButtonContianer extends Component {
                 {resInDropDown}
             </Menu>
         );
-        if (AllCompanyKey[industry].length > MaxCountOfCompanyButton) {
+        if (Object.keys(dataOfLevel[industry]['company']).length > MaxCountOfCompanyButton) {
             res.push(
                 <Dropdown key='more_button' overlay={menu}>
                     <Button>

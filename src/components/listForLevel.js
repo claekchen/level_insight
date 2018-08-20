@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 import { List, Icon } from 'antd';
 import React, {Component} from 'react';
 import './listForLevel.css';
-import {TotalHeightOfListForLevel, Palette, AllCompanyName} from '../constants/app-constants'
+import {TotalHeightOfListForLevel, Palette} from '../constants/app-constants'
 import dataOfLevel from '../datas/dataOfLevel'
 function ListHeader(props) {
     return (
         <div className='title'>
             <Icon className='close' onClick={props.remove} type='close'/>
-            <span>{AllCompanyName[props.industry][props.title]}</span>
+            <span>{dataOfLevel[props.industry]['company'][props.title]['name']}</span>
         </div>
     )
 }
@@ -30,7 +30,7 @@ class ListForLevel extends Component {
     }
     getData() {
         const {industry, company} = this.props
-        this.setState({dataSource: dataOfLevel[industry][company]})
+        this.setState({dataSource: dataOfLevel[industry]['company'][company]['level']})
     }
     randomColor() {
         Palette.sort((a, b) => Math.random() > 0.5 ? -1 : 1);
