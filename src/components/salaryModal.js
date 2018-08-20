@@ -1,10 +1,33 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import { connect } from "react-redux";
-import {Modal} from 'antd';
+import {Modal, Table} from 'antd';
 import dataOfLevel from '../datas/dataOfLevel'
 import {toggleSalaryModal} from '../actions/listContainer'
 import './salaryModal.css';
+
+const columns = [
+    {
+        title: '薪资/年',
+        dataIndex: 'salary',
+        key: 'salary',
+    }, 
+    {
+        title: '股票/年',
+        dataIndex: 'stock',
+        key: 'stock',
+    }, 
+    {
+        title: '奖金',
+        dataIndex: 'bonus',
+        key: 'bonus',
+    }
+]
+function AverageSalary(props) {
+    return (
+        <Table columns={columns}/>
+    )
+}
 class SalaryModal extends Component {
     constructor(props) {
         super(props)
@@ -14,14 +37,18 @@ class SalaryModal extends Component {
         return (
             <div className='salary-modal'>
                 <Modal
-                    title="Modal"
+                    title="详情"
                     visible={this.props.visible}
                     onCancel={onClose}
                     footer={null}
                 >
-                    <p>Bla bla ...</p>
-                    <p>Bla bla ...</p>
-                    <p>Bla bla ...</p>
+                    <h2>腾讯</h2>
+                    <p>T1</p>
+                    <p>
+                        <span>总和：</span>
+                        <span>10000</span>
+                    </p>
+                    <AverageSalary />
                 </Modal>
             </div>
         )
