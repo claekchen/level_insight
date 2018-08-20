@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import ListForLevel from './listForLevel'
 import ButtonContainer from './buttonContainer'
 import IndustrySelect from './industrySelect'
+import SalaryModal from './salaryModal'
 import {Palette} from '../constants/app-constants'
 import {pushToContainer, deleteFromContainer, selectIndustry} from '../actions/listContainer'
 import './listContainer.css';
@@ -54,6 +55,7 @@ class ListContainer extends Component {
                 <div className='list-row'>
                     {this.renderList()}
                 </div>
+                <SalaryModal />
             </div>
         )
     }

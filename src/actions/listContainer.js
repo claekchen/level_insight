@@ -25,3 +25,11 @@ export const selectIndustry = (industry) => {
         }
     )
 }
+
+export const toggleSalaryModal = () => {
+    return (
+        {
+            type: types.TOGGLE_MODAL
+        }
+    )
+}

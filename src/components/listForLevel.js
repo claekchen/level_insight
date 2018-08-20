@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import { List, Icon } from 'antd';
 import React, {Component} from 'react';
+import { connect } from "react-redux";
 import './listForLevel.css';
 import {TotalHeightOfListForLevel, Palette} from '../constants/app-constants'
+import {toggleSalaryModal} from '../actions/listContainer'
 import dataOfLevel from '../datas/dataOfLevel'
 function ListHeader(props) {
     return (
@@ -36,11 +38,12 @@ class ListForLevel extends Component {
         Palette.sort((a, b) => Math.random() > 0.5 ? -1 : 1);
     }
     renderItem(item) {
-        const {color} = this.props;
+        const {color, onClick} = this.props;
         const {dataSource} = this.state
         return (
             <List.Item 
             style={{height: this.calculateHeight(dataSource.length), backgroundColor: color}}
+            onClick={onClick}
             className= 'level-name'
             >
                 <p className='main-level'>{item.title}</p>
@@ -62,14 +65,23 @@ class ListForLevel extends Component {
     }
 }
 
+const mapStateToProps = () => {
+    return {
+    };
+};
+const mapDispatchToProps = {
+    onClick: toggleSalaryModal
+};
+
 ListForLevel.propTypes = {
     company: PropTypes.string,
     color: PropTypes.string,
     remove: PropTypes.func,
-    industry: PropTypes.string
+    industry: PropTypes.string,
+    onClick: PropTypes.func
 };
 
 ListHeader.propTypes = {
     remove: PropTypes.func
 }
-export default ListForLevel;
+export default connect(mapStateToProps, mapDispatchToProps)(ListForLevel);

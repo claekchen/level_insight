@@ -2,7 +2,8 @@ import * as types from '../constants/action-types';
 import dataOfLevel from '../datas/dataOfLevel'
 const initialState = {
   companyArray: ['tencent'],
-  industry: 'SE'
+  industry: 'SE',
+  salaryVisible: false
 };
 
 let defaultState = Object.assign({}, initialState)
@@ -38,6 +39,8 @@ export default function listContainer(state = initialState, action) {
             tempCompany.push(Object.keys(dataOfLevel[action.industry]['company'])[0])
             defaultState = Object.assign({}, state, {industry: action.industry, companyArray: tempCompany})
             return Object.assign({}, state, {industry: action.industry, companyArray: tempCompany})
+        case types.TOGGLE_MODAL:
+            return Object.assign({}, state, {salaryVisible: !state.salaryVisible})
         default:
             return state;
     }
