@@ -51,10 +51,10 @@ class ListForLevel extends Component {
             <List.Item 
             style={{height: this.calculateHeight(dataSource.length), backgroundColor: color}}
             onClick={this.handleClick}
-            data-level={item.title}
+            data-level={item.key}
             className= 'level-name'
             >
-                <p className='main-level'>{item.title}</p>
+                <p className='main-level'>{item.key}</p>
             </List.Item>
         )
     }

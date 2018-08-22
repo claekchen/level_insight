@@ -5,7 +5,7 @@ const initialState = {
   industry: 'SE',
   salaryVisible: false,
   companySelected: 'tencent',
-  levelSelected: 'T1'
+  levelSelected: null
 };
 
 let defaultState = Object.assign({}, initialState)

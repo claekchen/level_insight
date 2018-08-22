@@ -6,11 +6,11 @@ export default {
                 name: '腾讯',
                 level: [      
                     {
-                        title: 'T1'
-                        
+                        key: 'T1'
+
                     },
                     {
-                        title: 'T2'
+                        key: 'T2'
                     }
                 ]
             },
@@ -18,16 +18,16 @@ export default {
                 name: '阿里巴巴',
                 level: [
                     {
-                        title: 'P1'
+                        key: 'P1'
                     },
                     {
-                        title: 'P2'
+                        key: 'P2'
                     },
                     {
-                        title: 'P3'
+                        key: 'P3'
                     },
                     {
-                        title: 'P4'
+                        key: 'P4'
                     }
                 ] 
             }
@@ -40,10 +40,127 @@ export default {
                 name: '安永',
                 level: [        
                     {
-                        title: 'T1'
+                        key: 'A1',
                     },
                     {
-                        title: 'T2'
+                        key: 'A2',
+                    },
+                    {
+                        key: 'SA1',
+                    },
+                    {
+                        key: 'SA2',
+                    },
+                    {
+                        key: 'SA3',
+                    },
+                    {
+                        key: 'Manager',
+                    },
+                    {
+                        key: 'Senior Manager',
+                    },
+                    {
+                        key: 'Salary Partner',
+                    },
+                    {
+                        key: 'Equity Partner',
+                    }
+                ]
+            },
+            PwC: {
+                name: '普华永道',
+                level: [        
+                    {
+                        key: 'A1',
+                    },
+                    {
+                        key: 'A2',
+                    },
+                    {
+                        key: 'SA1',
+                    },
+                    {
+                        key: 'SA2',
+                    },
+                    {
+                        key: 'SA3',
+                    },
+                    {
+                        key: 'Manager',
+                    },
+                    {
+                        key: 'Senior Manager',
+                    },
+                    {
+                        key: 'Salary Partner',
+                    },
+                    {
+                        key: 'Equity Partner',
+                    }
+                ]
+            },
+            Deloitte: {
+                name: '德勤',
+                level: [        
+                    {
+                        key: 'A1',
+                    },
+                    {
+                        key: 'A2',
+                    },
+                    {
+                        key: 'SA1',
+                    },
+                    {
+                        key: 'SA2',
+                    },
+                    {
+                        key: 'SA3',
+                    },
+                    {
+                        key: 'Manager',
+                    },
+                    {
+                        key: 'Senior Manager',
+                    },
+                    {
+                        key: 'Salary Partner',
+                    },
+                    {
+                        key: 'Equity Partner',
+                    }
+                ]
+            },
+            KPMG: {
+                name: '毕马威',
+                level: [        
+                    {
+                        key: 'A1',
+                    },
+                    {
+                        key: 'A2',
+                    },
+                    {
+                        key: 'SA1',
+                    },
+                    {
+                        key: 'SA2',
+                    },
+                    {
+                        key: 'SA3',
+                    },
+                    {
+                        key: 'Manager',
+                    },
+                    {
+                        key: 'Senior Manager',
+                    },
+                    {
+                        key: 'Salary Partner',
+                    },
+                    {
+                        key: 'Equity Partner',
                     }
                 ]
             }

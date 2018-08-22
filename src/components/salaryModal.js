@@ -40,6 +40,7 @@ function SalaryDataContainer(props) {
                 <span>总和：</span>
                 <span>￥{props.total}/年</span>
             </h3>
+            <p>{props.comment !== null ? props.comment : ""}</p>
             <AverageSalary dataSource={props.dataSource}/>
         </Fragment>
     )
@@ -53,6 +54,8 @@ class SalaryModal extends Component {
     }
     render() {
         const {onClose, industry, level, company} = this.props
+        if (level === null)
+            return null
         const {salary, stock, bonus} = dataOfSalary[industry][company][level] ? dataOfSalary[industry][company][level] : [null, null, null]
         let dataSource
         if (this.checkHasData(salary)) {
@@ -78,7 +81,7 @@ class SalaryModal extends Component {
                 <h1>{level}</h1>
                 {
                     this.checkHasData(salary) 
-                        ? <SalaryDataContainer dataSource={dataSource} total={total}/>
+                        ? <SalaryDataContainer dataSource={dataSource} total={total} comment={dataOfSalary[industry][company].comment}/>
                         : <NoDataPlaceholde />
                 }
             </Modal>
