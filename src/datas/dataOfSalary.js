@@ -180,7 +180,7 @@ export default {
             bonus: null
           }
         },
-        KMPG: {
+        KPMG: {
           comment: "备注：差补200/天。",
           'A1': {
             salary: 99000,
