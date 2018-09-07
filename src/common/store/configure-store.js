@@ -1,2 +1,2 @@
 const prodStore = require("./configure-store-prod");
- module.exports = prodStore;
+module.exports = prodStore;

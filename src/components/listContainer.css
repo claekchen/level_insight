@@ -1,13 +1,13 @@
-.button-container{
+.button-container {
 }
-.list-row{
+.list-row {
   display: flex;
   justify-content: center;
 }
-.list-row > .listForLevel{
+.list-row > .listForLevel {
   flex: 1;
 }
-.list-row > .margin{
+.list-row > .margin {
   height: 100%;
   width: 10px;
 }

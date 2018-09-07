@@ -1,33 +1,33 @@
-.listForLevel{
-    max-width: 400px;
+.listForLevel {
+  max-width: 400px;
 }
-.listForLevel .ant-list-item-content{
-    justify-content: center;
+.listForLevel .ant-list-item-content {
+  justify-content: center;
 }
 
-.listForLevel .title{
-    font-size: 16px;
-    font-weight: 500;
+.listForLevel .title {
+  font-size: 16px;
+  font-weight: 500;
 }
 .listForLevel .title .close {
-    cursor: pointer;
+  cursor: pointer;
 }
 .listForLevel .title span {
-    margin-left: 5px;
-    position: relative;
-    bottom: 1px;
-    text-transform: capitalize;
+  margin-left: 5px;
+  position: relative;
+  bottom: 1px;
+  text-transform: capitalize;
 }
-.level-name{
-    max-height: 150px;
-    font-weight: bold;
+.level-name {
+  max-height: 150px;
+  font-weight: bold;
 }
-.level-name:hover{
-    opacity: 0.7;
+.level-name:hover {
+  opacity: 0.7;
 }
-.level-name:active{
-    opacity: 0.7;
+.level-name:active {
+  opacity: 0.7;
 }
-.level-name .main-level{
-    font-size: 1em;
+.level-name .main-level {
+  font-size: 1em;
 }
